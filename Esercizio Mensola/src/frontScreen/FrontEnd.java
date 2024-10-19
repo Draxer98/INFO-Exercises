@@ -4,53 +4,51 @@ import mensola.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import utility.Tools;
 
 import static utility.Tools.menu;
 
 public class FrontEnd {
-    public static Libro leggiLibro(Scanner keyboard) {
-        final int MAX = 20;
-        //Istanziamento libro
+    public static Libro leggiLibro(Scanner scanner) {
         Libro output = new Libro();
-        boolean errore;
 
+        System.out.println("inserire l'autore: ");
+        output.autore = scanner.next();
+
+        System.out.println("Inserire titolo: ");
+        output.titolo = scanner.next();
+
+        System.out.println("Numero di pagine: ");
+        output.numeroPagine = Integer.parseInt(scanner.next());
+
+        Genere[] generi = Genere.values();
+        String[] menuData = new String[generi.length + 1];
+        menuData[0] = "Generi";
+        for (int i = 0; i < generi.length; i++) {
+            menuData[i + 1] = generi[i].toString();
+        }
+        int genereIndex;
         do {
+            genereIndex = Tools.menu(menuData, scanner) - 1;
+        } while (genereIndex == -1);
+        output.tipologia = generi[genereIndex];
+
+        while (true) {
             try {
-                keyboard.nextLine();
-                errore = false;
-                //Inserimento autore
-                System.out.println("Inserire l'autore: ");
-                output.autore = keyboard.nextLine();
-                //Inserimento titolo
-                System.out.println("Inserire il titolo: ");
-                output.titolo = keyboard.nextLine();
-                //Inserimento numero di pagine
-                System.out.println("Inserire il numero di pagine");
-                output.numeroPagine = keyboard.nextInt();
-                //Inserimento tipologia
-                Genere[] generi = Genere.values();
-                String[] menuData = new String[generi.length + 1];
-                menuData[0] = "Inserire genere";
-                for (int i = 0; i < generi.length; i++)
-                    menuData[i + 1] = generi[i].toString();
-                int genereIndex = (menu(menuData, keyboard) - 1);
-                output.tipologia = generi[genereIndex];
-                /*Inserimento data
-                System.out.print("Inserire data> ");
-                String dataInput = keyboard.nextLine();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                output.dataPubblicazione = LocalDate.parse(dataInput, formatter);*/
+                System.out.println("Inserisci la data di pubblicazione (dd-mm-yyyy): ");
+                String dateInput = scanner.next();
+                output.dataPubblicazione = LocalDate.parse(dateInput, output.formattazioneData);
+
+                break;
             } catch (Exception e) {
-                System.out.println(e.getMessage());
-                errore = true;
+                System.out.println("\t<ATTENZIONE> Valore data invalido.\n\tInserire una dato con formattazione specificata tra parentesi.");
             }
-        } while (errore);
+        }
 
         return output;
     }
 
     public static void visualizza(int contatore, Libro[] mensola) {
-        final int MAX = 20;
         for (int i = 0; i < contatore; i++) {
             System.out.println("AUTORE: " + mensola[i].autore +
                     "\nTITOLO: " + mensola[i].titolo +
@@ -59,3 +57,4 @@ public class FrontEnd {
         }
     }
 }
+
