@@ -18,6 +18,7 @@ public class Main {
                 "Modifica pagine libro",
                 "Cancellazione",
                 "Cerca libri autore",
+                "Cerca steso titolo",
                 "fine"
         };
         boolean fine=true;
@@ -34,7 +35,7 @@ public class Main {
                             titolo = false;
                             mensola[contatore] = FrontEnd.leggiLibro(keyboard);
                             for(int i = 0; i < contatore; i++){
-                                if(mensola[contatore].titolo.equals(mensola[i].titolo)){
+                                if(mensola[contatore].autore.equals(mensola[i].autore) && mensola[contatore].titolo.equals(mensola[i].titolo)){
                                     System.out.println("Il titolo inserito è gia esistente, riprova");
                                     titolo = true;
                                 }
@@ -88,6 +89,20 @@ public class Main {
                     visualizzaLibriDiAutore(contatore, parola);
                     break;
                 case 6:
+                    Libro[] titoli = new Libro[contatore];
+                    keyboard.nextLine();
+                    System.out.println("Inserisci il titolo: ");
+                    parola = keyboard.nextLine();
+                    titoli = findAll(parola, contatore);
+                    if(titoli == null){
+                        System.out.println("Non sono stati trovati libri");
+                    } else {
+                        for(int i = 0; i < titoli.length; i++){
+                            System.out.println(titoli[i]);
+                        }
+                    }
+                    break;
+                case 7:
                     fine = false;
                     break;
             }
@@ -116,5 +131,22 @@ public class Main {
             }
         }
         return -1;
+    }
+
+    private static Libro[] findAll(String parola, int contatore){
+        Libro[] titoloUguale = new Libro[contatore];
+        int lunghezza = -1;
+        for(int i = 0; i < contatore; i++){
+            if(mensola[i].titolo.equals(parola)){
+                titoloUguale[++lunghezza] = mensola[i];
+
+            }
+        }
+
+        if(lunghezza != -1){
+            return titoloUguale;
+        } else {
+            return null;
+        }
     }
 }
