@@ -48,4 +48,14 @@ public class FrontEnd {
 
         return output;
     }
+
+    public static void visualizza(int contatore, Libro[] mensola) {
+        final int MAX = 20;
+        for (int i = 0; i < contatore; i++) {
+            System.out.println("AUTORE: " + mensola[i].autore +
+                    "\nTITOLO: " + mensola[i].titolo +
+                    "\nN° PAGINE: " + mensola[i].numeroPagine +
+                    "\nTIPOLOGIA: " + mensola[i].tipologia + "\n");
+        }
+    }
 }
