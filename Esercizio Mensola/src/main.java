@@ -5,7 +5,7 @@ import mensola.*;
 
 import java.util.Scanner;
 
-public class main {
+public class Main {
     public static final int MAX_LIBRI = 20;
     private static Libro[] mensola = new Libro[MAX_LIBRI];
 
@@ -46,7 +46,7 @@ public class main {
                     }
                     break;
                 case 2:
-                    Visualizza(contatore);
+                    FrontEnd.visualizza(contatore, mensola);
                     break;
                 case 3:
                     keyboard.nextLine();
@@ -85,7 +85,7 @@ public class main {
                     keyboard.nextLine();
                     System.out.println("Inserisci il nome dell'autore: ");
                     parola = keyboard.nextLine();
-                    VisualizzaLibriDiAutore(contatore, parola);
+                    visualizzaLibriDiAutore(contatore, parola);
                     break;
                 case 6:
                     fine = false;
@@ -94,16 +94,7 @@ public class main {
         } while (fine);
     }
 
-    private static void Visualizza(int contatore) {
-        for (int i = 0; i < contatore; i++) {
-            System.out.println("AUTORE: " + mensola[i].autore +
-                    "\nTITOLO: " + mensola[i].titolo +
-                    "\nN° PAGINE: " + mensola[i].numeroPagine +
-                    "\nTIPOLOGIA: " + mensola[i].tipologia + "\n");
-        }
-    }
-
-    private static void VisualizzaLibriDiAutore(int contatore, String autore) {
+    private static void visualizzaLibriDiAutore(int contatore, String autore) {
         boolean trovato = false;
         for (int i = 0; i < contatore; i++) {
             if (mensola[i].autore.equals(autore)) {
