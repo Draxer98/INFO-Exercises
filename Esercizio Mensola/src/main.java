@@ -19,12 +19,15 @@ public class Main {
                 "Cancellazione",
                 "Cerca libri autore",
                 "Cerca steso titolo",
+                "Somma dei prezzi",
+                "Cerca posizione libri",
                 "fine"
         };
         boolean fine=true;
         boolean titolo;
         int contatore=0;
         int indice = -1;
+        double sommaPrezzi = 0;
         String parola;
 
         do {
@@ -89,7 +92,7 @@ public class Main {
                     visualizzaLibriDiAutore(contatore, parola);
                     break;
                 case 6:
-                    Libro[] titoli = new Libro[contatore];
+                    Libro[] titoli;
                     keyboard.nextLine();
                     System.out.println("Inserisci il titolo: ");
                     parola = keyboard.nextLine();
@@ -103,6 +106,34 @@ public class Main {
                     }
                     break;
                 case 7:
+                    keyboard.nextLine();
+                    System.out.println("Inserisci l'autore");
+                    parola = keyboard.nextLine();
+                    sommaPrezzi=SommaPrezzoStessoAutore(parola, contatore, sommaPrezzi);
+
+                    if(sommaPrezzi !=0){
+                        System.out.println("La somma dei prezzi di tutti i libri di " + parola + " è: " + sommaPrezzi);
+                    } else {
+                        System.out.println("L'autore inserito non si trova nella mensola");
+                    }
+                    break;
+                case 8:
+                    int[] posizioneLibri = new int[contatore];
+                    keyboard.nextLine();
+                    System.out.println("Inserisci l'autore");
+                    parola = keyboard.nextLine();
+                    cercaPosizioneLibri(posizioneLibri, parola, contatore);
+                    if(posizioneLibri!=null){
+                        System.out.println("Ecco le posizione dei libri: ");
+                        for (int i : posizioneLibri) {
+                            System.out.print(i + " ");
+                        }
+                    } else {
+                        System.out.println("L'autore inserito non esiste nella mensola");
+                    }
+                    System.out.println(" ");
+                    break;
+                case 9:
                     fine = false;
                     break;
             }
@@ -147,6 +178,25 @@ public class Main {
             return titoloUguale;
         } else {
             return null;
+        }
+    }
+
+    private static double SommaPrezzoStessoAutore(String parola, int contatore, double sommaPrezzi){
+        for(int i=0; i < contatore; i++){
+            if(mensola[i].autore.equals(parola)){
+                sommaPrezzi = sommaPrezzi + mensola[i].prezzoLibro;
+            }
+        }
+
+        return sommaPrezzi;
+    }
+
+    private static void cercaPosizioneLibri(int[] posizioneLibri, String parola, int contatore){
+        int lunghezza=-1;
+        for(int i=0; i < contatore; i++){
+            if(mensola[i].autore.equals(parola)){
+                posizioneLibri[++lunghezza]=i;
+            }
         }
     }
 }
