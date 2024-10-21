@@ -8,9 +8,10 @@ public class Libro {
     public String titolo;
     public int numeroPagine;
     public final double costoPerPagina = 0.05;
+    public double prezzoLibro;
     public Genere tipologia;
     public LocalDate dataPubblicazione;
-    private final DateTimeFormatter formattazioneData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public final DateTimeFormatter formattazioneData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @Override
     public String toString() {
