@@ -21,6 +21,8 @@ public class FrontEnd {
         System.out.println("Numero di pagine: ");
         output.numeroPagine = Integer.parseInt(scanner.next());
 
+        output.prezzoLibro = output.costoPerPagina * output.numeroPagine;
+
         Genere[] generi = Genere.values();
         String[] menuData = new String[generi.length + 1];
         menuData[0] = "Generi";
@@ -57,4 +59,3 @@ public class FrontEnd {
         }
     }
 }
-
