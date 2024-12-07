@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Pilota {
     private String nome;
     private String cognome;
@@ -60,5 +62,10 @@ public class Pilota {
                 ", nationality = '" + nazionalita + "'" +
                 ", eta = " + eta +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, cognome, nazionalita, eta);
     }
 }
