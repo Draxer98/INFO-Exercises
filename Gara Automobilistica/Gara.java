@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Gara {
     private String nome;
@@ -12,7 +13,7 @@ public class Gara {
     }
 
     public void aggiungiAuto(Auto auto) {
-        autoInGara.add(auto);
+            autoInGara.add(auto);
     }
 
     public String getNome() {
@@ -25,6 +26,18 @@ public class Gara {
 
     public String getRisultato() {
         return risultato;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Gara gara = (Gara) o;
+        return Objects.equals(nome, gara.nome) && Objects.equals(autoInGara, gara.autoInGara) && Objects.equals(risultato, gara.risultato);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, autoInGara, risultato);
     }
 
     public void corriGara() {
