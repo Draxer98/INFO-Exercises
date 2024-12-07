@@ -1,4 +1,4 @@
-package garaAutomobilistica.util;
+package util;
 
 import java.util.Scanner;
 
@@ -21,7 +21,7 @@ public class Tools {
         }
     }
 
-    public static int menu(String[] options, Scanner scanner) {// parametri formali
+    public static int menu(String[] options, Scanner scanner) {
         int scelta;
 
         do {
@@ -55,6 +55,43 @@ public class Tools {
         while ((scelta < 1) || (scelta > options.length - 1));
 
         return scelta;
+    }
+
+    public static int menuGara(String[] options, Scanner scanner) {
+        int scelta2;
+
+        do {
+            for (int i = 0; i < options[0].length(); i++) {
+                System.out.print("-");
+            }
+            System.out.println();
+
+            System.out.println("Gara");
+
+            for (int i = 0; i < options[0].length(); i++) {
+                System.out.print("-");
+            }
+            System.out.println();
+
+            for (int i = 0; i < options.length; i++) {
+                int contatore = i;
+                System.out.println("[" + (++contatore) + "]" + " " + options[i]);
+            }
+
+            try {
+                scelta2 = (Integer.parseInt(scanner.nextLine()));
+            } catch (Exception e) {
+                System.out.println("Valore invalido");
+                return -1;
+            }
+
+            if ((scelta2 < 0) || (scelta2 > options.length - 1)) {
+                System.out.println("Opzione Sbagliata");
+            }
+        }
+        while ((scelta2 < 0) || (scelta2 > options.length - 1));
+
+        return scelta2;
     }
 
 }
