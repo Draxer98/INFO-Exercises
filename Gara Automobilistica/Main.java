@@ -1,4 +1,4 @@
-import garaAutomobilistica.util.Tools;
+import util.Tools;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,18 +37,18 @@ public class Main {
 
                     Gara nuovaGara = new Gara(nomeGara);
                     gare.add(nuovaGara);
-                    
+
                     System.out.println("Aggiungi auto alla gara. Inserisci il numero di auto da aggiungere: ");
                     int numAuto = Integer.parseInt(scanner.nextLine());
                     for (int i = 0; i < numAuto; i++) {
                         System.out.println("Seleziona il pilota per l'auto #" + (i + 1));
-                        Pilota pilota = piloti.get(Tools.menu(piloti.stream().map(Pilota::getNome).toArray(String[]::new), scanner) - 1);
+                        Pilota pilota = piloti.get(Tools.menuGara(piloti.stream().map(Pilota::getNome).toArray(String[]::new), scanner) - 1);
                         System.out.println("Inserisci la scuderia: ");
                         String scuderia = scanner.nextLine();
                         System.out.println("Inserisci la cilindrata dell'auto: ");
                         int cilindrata = Integer.parseInt(scanner.nextLine());
                         Auto auto = new Auto(scuderia, pilota, cilindrata);
-                        nuovaGara.aggiungiAuto(auto);
+                            nuovaGara.aggiungiAuto(auto);
                     }
 
                     nuovaGara.corriGara();
@@ -60,6 +60,4 @@ public class Main {
             }
         } while (exit);
     }
-}
-
 }
