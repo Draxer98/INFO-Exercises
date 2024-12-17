@@ -1,0 +1,64 @@
+import java.time.LocalTime;
+import java.util.Objects;
+
+public class Cronometro {
+
+    public LocalTime StartTime;
+    public LocalTime EndTime;
+    public int TempoGiro;
+
+    public Cronometro(LocalTime StartTime, LocalTime EndTime, int TempoGiro) {
+        this.StartTime = StartTime;
+        this.EndTime = EndTime;
+        this.TempoGiro = TempoGiro;
+    }
+
+    public int getTempoGiro() {
+        return TempoGiro;
+    }
+
+    public void setTempoGiro(int tempoGiro) {
+        TempoGiro = tempoGiro;
+    }
+
+    public LocalTime getEndTime() {
+        return EndTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        EndTime = endTime;
+    }
+
+    public LocalTime getStartTime() {
+        return StartTime;
+    }
+
+    public void setStartTime(LocalTime startTime) {
+        StartTime = startTime;
+    }
+
+    private static void CalcolaTempoGrio(){
+        
+    }
+
+    @Override
+    public String toString() {
+        return "Cronometro{" +
+                "StartTime=" + StartTime +
+                ", EndTime=" + EndTime +
+                ", TempoGiro=" + TempoGiro +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Cronometro that = (Cronometro) o;
+        return TempoGiro == that.TempoGiro && Objects.equals(StartTime, that.StartTime) && Objects.equals(EndTime, that.EndTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(StartTime, EndTime, TempoGiro);
+    }
+}
