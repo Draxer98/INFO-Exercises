@@ -1,4 +1,5 @@
 import util.Tools;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ public class Main {
         ArrayList<Pilota> piloti = new ArrayList<>();
         ArrayList<Gara> gare = new ArrayList<>();
         boolean exit = true;
+        boolean verifica;
 
         do {
             switch (Tools.menu(mainMenu, scanner)) {
@@ -45,10 +47,20 @@ public class Main {
                         Pilota pilota = piloti.get(Tools.menuGara(piloti.stream().map(Pilota::getNome).toArray(String[]::new), scanner) - 1);
                         System.out.println("Inserisci la scuderia: ");
                         String scuderia = scanner.nextLine();
-                        System.out.println("Inserisci la cilindrata dell'auto: ");
-                        int cilindrata = Integer.parseInt(scanner.nextLine());
-                        Auto auto = new Auto(scuderia, pilota, cilindrata);
-                            nuovaGara.aggiungiAuto(auto);
+                        do {
+                            try {
+                                verifica = true;
+                                System.out.println("Inserisci la cilindrata dell'auto: ");
+                                int cilindrata = Integer.parseInt(scanner.nextLine());
+                                Auto auto = new Auto(scuderia, pilota, cilindrata);
+                                nuovaGara.aggiungiAuto(auto);
+                            } catch (Exception e) {
+                                verifica = false;
+                                System.out.println(e.getMessage());
+                            }
+                        } while (!verifica);
+
+
                     }
 
                     nuovaGara.corriGara();
