@@ -33,9 +33,10 @@ public class FrontEnd {
 
         Genere[] generi = Genere.values();
         String[] menuData = new String[generi.length + 1];
-        menuData[0] = "Inserire genere";
-        for (int i = 0; i < generi.length; i++)
+        menuData[0] = "Genere";
+        for (int i = 0; i < generi.length; i++) {
             menuData[i + 1] = generi[i].toString();
+        }
         int genereIndex = (Menu(menuData, keyboard) - 1);
         output.tipo = generi[genereIndex];
 
@@ -59,6 +60,24 @@ public class FrontEnd {
         for (int i = mensola.size() - 1; i >= 0; i--) {
             if (mensola.get(i).titolo.equals(titoloDaEliminare)) {
                 mensola.remove(i);
+                verifica = true;
+            }
+        }
+        if (!verifica) {
+            System.out.println("Il titolo inserito non esiste nella mensola");
+        }
+    }
+
+    public static void ModificaTitolo(ArrayList<Libro> mensola, Scanner keyboard) {
+        Libro libroDaModificare = new Libro();
+        System.out.println("Inserisci il titolo");
+        String titoloModificare = keyboard.nextLine();
+        boolean verifica = false;
+        for (int i = 0; i < mensola.size(); i++) {
+            if (mensola.get(i).titolo.equals(titoloModificare)) {
+                System.out.println("Inserisci nuovo titolo");
+                libroDaModificare.titolo = keyboard.nextLine();
+                mensola.get(i).titolo = libroDaModificare.titolo;
                 verifica = true;
             }
         }
