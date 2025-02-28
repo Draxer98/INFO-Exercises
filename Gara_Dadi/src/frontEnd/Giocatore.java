@@ -1,43 +1,34 @@
 package frontEnd;
 
 public class Giocatore {
-    String nome;
-    int vittorie;
-    int numeroDado;
+    private String Nome;
+    private Dado dado;
+    private int numeroVittorie = 0;
+    private int bonusVittoria;
 
-    public Giocatore(String nome) {
-        this.nome = nome;
+    public Giocatore(String nome, int numeroFacce) {
+        Nome = nome;
+        dado = new Dado(numeroFacce);
+    }
+
+    public void incrementaNumeroVittorie() {
+        this.numeroVittorie++;
+    }
+
+    public Dado getDado() {
+        return dado;
+    }
+
+    public int getNumeroVittorie() {
+        return numeroVittorie;
     }
 
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public String toPlayerString() {
+        return String.format("nome:%s   valore Lancio;%s", getNome(), getDado());
     }
 
-    public int getVittorie() {
-        return vittorie;
-    }
-
-    public void setVittorie(int vittorie) {
-        this.vittorie = vittorie;
-    }
-
-    public int getNumeroDado() {
-        return numeroDado;
-    }
-
-    public void setNumeroDado(int numeroDado) {
-        this.numeroDado = numeroDado;
-    }
-
-    @Override
-    public String toString() {
-        return "Giocatore{" +
-                "nome = '" + nome + '\'' +
-                ", vittorie = " + vittorie +
-                '}';
-    }
 }
