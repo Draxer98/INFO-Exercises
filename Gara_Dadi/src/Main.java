@@ -1,14 +1,3 @@
-/*
- * PARTITa AVANZATA:
- * MIN 3 round
- * Ogni 3 round vinti di fila dallo stesso giocatore: BONUS vincita
- * Parita -> si resetta bonus vincita
- * Comunicare il bonus vincita
- * Eseguire confronti tra dado e giocatore con comparable
- * Possibilità di utilizzare sia partita base che avanzata
- * Utilizzando il polimorfismo comunicare il tipo di partita che stiamo utilizzando (istance of)
- * */
-
 import frontEnd.Gara;
 import frontEnd.GaraAvanzata;
 import frontEnd.Giocatore;
